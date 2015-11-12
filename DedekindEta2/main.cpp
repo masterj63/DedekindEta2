@@ -20,13 +20,13 @@ void print_table(ostream &os, const dcomp q, const int a, const int b, string h1
     os << "<html><head><style type=\"text/css\">td {text-align:center;}</style></head><body>\n";
     os << "<table border=\"1\" cellspacing=\"0\"><tr><td colspan=\"3\">&eta;(" << h1 << "z)&eta;(" << h2 << "z)</td></tr>\n\n";
     
-    map<int, vector<pair<int, int>>> map_vp;
+    map<int, vector<pair<int, int> > > map_vp;
     for (int m = -MAX_N; m <= MAX_N; m++) {
         for (int n = -MAX_N; n <= MAX_N; n++) {
             int x = xx(m, n, a);
-            map<int, vector<pair<int, int>>>::iterator it = map_vp.find(x);
+            map<int, vector<pair<int, int> > >::iterator it = map_vp.find(x);
             if (it == map_vp.end())
-                map_vp[x] = vector<pair<int, int>>();
+                map_vp[x] = vector<pair<int, int> >();
             map_vp[x].push_back(make_pair(m, n));
         }
     }
@@ -46,7 +46,7 @@ void print_table(ostream &os, const dcomp q, const int a, const int b, string h1
     }
     
     for (auto itmap = map_vp.begin(); itmap != map_vp.end(); itmap++) {
-        vector<pair<int,int>> vec_mns = itmap->second;
+        vector<pair<int,int> > vec_mns = itmap->second;
         size_t rowspan = vec_mns.size();
         os << "<tr><td rowspan=\"" << rowspan << "\">" << xx(vec_mns[0].first, vec_mns[0].second, a) / b << "</td>\n";
         os << "<td>" << vec_mns[0].first << " " << vec_mns[0].second << "</td>\n";
@@ -59,7 +59,7 @@ void print_table(ostream &os, const dcomp q, const int a, const int b, string h1
     os << "\n</table>\n</body>\n</html>\n\n" << endl;
 }
 
-vector<pair<pair<int, int>, pair<string, string>>> desciption = {
+vector<pair<pair<int, int>, pair<string, string> > > desciption = {
     {{23, 24}, {"23", ""}},
     {{11, 12}, {"22", "2"}},
     {{7, 8}, {"21", "3"}},
