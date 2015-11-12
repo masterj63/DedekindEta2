@@ -84,17 +84,23 @@ int main(int argc, const char * argv[]) {
     const dcomp z(z_re, z_im);
     const double pi = 2*asin(1);
     const dcomp q = exp(z * dcomp(0, 1) * 2.0 * pi);
-    
-    filebuf fb;
-    fb.open("index.html", ios::out);
-    ostream os(&fb);
-    
-    os.unsetf ( std::ios::floatfield );
-    os.setf( std::ios::fixed, std:: ios::floatfield );
-    os.precision(12);
-    
-    const int a = 23, b = 24;
-    print_table(os, q, a, b, "23", "");
-    
-    fb.close();
+
+    for (auto vecit = desciption.begin(); vecit != desciption.end(); vecit++) {
+        int a = vecit->first.first;
+        int b = vecit->first.second;
+        string ha = vecit->second.first;
+        string hb = vecit->second.second;
+        
+        filebuf fb;
+        fb.open("index_" + ha + "_" + hb + ".html", ios::out);
+        ostream os(&fb);
+        
+        os.unsetf(ios::floatfield);
+        os.setf(ios::fixed, ios::floatfield);
+        os.precision(12);
+        
+        print_table(os, q, a, b, ha, hb);
+        
+        fb.close();
+    }
 }
